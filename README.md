@@ -132,52 +132,22 @@ Nền tảng bao gồm các chức năng chính:
 ### 6. Các trường hợp sử dụng chính
 Các trường hợp sử dụng chính sẽ bao gồm chi tiết về cách người dùng đăng ký, đăng nhập, đăng tuyển, ứng tuyển công việc, đánh giá và sử dụng ví điện tử.
 
----
 
-### 7. Phân Chia Task theo Giai Đoạn
 
-#### Giai Đoạn 1: Khởi Động: Phân Tích và Thiết Kế
-- **Task 1.1:** Xác định yêu cầu chi tiết (3 ngày, Cao)
-- **Task 1.2:** Thiết kế kiến trúc hệ thống (5 ngày, Cao)
-- **Task 1.3:** Thiết kế UI/UX (7 ngày, Cao)
-- **Task 1.4:** Tài liệu hóa SRS và quy trình hệ thống (3 ngày, Trung bình)
+### 7. Phân Công Nguồn Lực Chính
 
-#### Giai Đoạn 2: Phát Triển
-...
-
-[Phần chi tiết cho từng task, bao gồm các giai đoạn phát triển, kiểm thử, và triển khai]
-
----
-
-### 8. Phân Công Nguồn Lực Chính
-
-| Vai trò              | Phân công công việc                                      |
+| Member               | Phân công công việc                                      |
 |----------------------|----------------------------------------------------------|
-| PM                   | Quản lý dự án, giao tiếp giữa các bên                    |
-| BA                   | Phân tích yêu cầu và tài liệu hóa                        |
-| System Architect     | Thiết kế kiến trúc hệ thống                              |
-| UI/UX Designer       | Thiết kế giao diện người dùng                            |
-| Frontend Developer   | Xây dựng các giao diện người dùng                        |
-| Backend Developer    | Phát triển API và xử lý logic backend                    |
-| Payment Specialist   | Tích hợp thanh toán và quản lý ví điện tử                |
-| Admin Panel Specialist | Xây dựng và quản lý bảng điều khiển Admin              |
-| QA Engineer          | Kiểm thử chức năng, bảo mật, hiệu suất                   |
-| DevOps Engineer      | Triển khai và duy trì hệ thống                          |
+| Trần Phúc Vinh       | Back-End , BA  ,QA Engineer                              |
+| Nguyễn Đức Tấn       | Back-End , DevOps                                        |
+| Nguyễn Mạnh Khang    | Back-End , Data Engineer                                 |
+| Lâm Phương           | Frontend Developer & UI/UX                               |
+| Tây Trương           | Frontend Developer & UI/UX                               |
+| Dương Kỳ Quý         | Frontend Developer                                       |
+| Trang Giang          | Frontend Developer                                       |
 
 ---
 
-### 9. Tổng Quan Thời Gian Cần Thiết cho Mỗi Giai Đoạn
 
-Giai đoạn	Tổng thời gian dự kiến	Các ghi chú song song
-1. Khởi động (Phân tích và thiết kế)	18 ngày	Một số task thiết kế và tài liệu hóa có thể song song.
-2. Phát triển tính năng	32 ngày	Một số task Frontend và Backend có thể song song.
-3. Quản lý & Quản trị (Admin)	18 ngày	Các task quản trị có thể song song với phát triển.
-4. Kiểm thử	12 ngày	Một số kiểm thử bảo mật và hiệu suất có thể song song.
-5. Triển khai	10 ngày	Theo dõi sau triển khai có thể kéo dài thêm.
-Tổng Thời Gian Dự Kiến
-•	Tổng ngày làm việc: 90 ngày.
-Phân Tích Chi Tiết về Tổng Thời Gian
-Dưới đây là các yếu tố ảnh hưởng đến tổng thời gian dự án:
-1.	Task song song: Một số task thiết kế có thể thực hiện song song với phát triển backend và frontend. Ví dụ, thiết kế UI/UX và phát triển backend có thể tiến hành cùng lúc.
 
 
