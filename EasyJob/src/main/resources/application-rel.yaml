@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: EasyJob
+
+server:
+  port: 8083
