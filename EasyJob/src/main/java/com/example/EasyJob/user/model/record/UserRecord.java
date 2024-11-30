@@ -1,10 +1,20 @@
 package com.example.EasyJob.user.model.record;
 
 
+import com.example.EasyJob.common.validate.annotation.UUIDConstraint;
+import com.example.EasyJob.common.validate.group.InsertInfo;
+import com.example.EasyJob.common.validate.group.UpdateInfo;
 import com.example.EasyJob.user.model.User;
+import com.example.EasyJob.user.valiation.anomation.UniqueUser;
 import jakarta.validation.constraints.*;
 
+import java.util.UUID;
+
+@UniqueUser(groups = {InsertInfo.class, UpdateInfo.class})
 public record UserRecord(
+
+        @UUIDConstraint()
+        UUID id,
 
         @Email(message = "{user.email.invalid}")
         @NotBlank(message = "{user.email.not-blank}")
@@ -15,8 +25,8 @@ public record UserRecord(
         String password,
 
         @NotBlank(message = "{user.username.not-blank}")
-        @Size(min = 8, max = 20, message = "{user.username.size}")
-        String fullname,
+        @Size(min = 8, max = 20, message = "{user.username.not-blank}}")
+        String fullName,
 
         @Size(max = 15, message = "{user.phone.size}") // Example size constraint
         String phone,

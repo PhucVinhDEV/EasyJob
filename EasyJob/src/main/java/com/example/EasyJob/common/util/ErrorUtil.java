@@ -57,4 +57,8 @@ public class ErrorUtil {
     public static List<String> getErrorMessage(AppException exception) {
         return List.of(exception.getMessage());
     }
+
+    public static List<String> getErrorMessage(Exception exception) {
+        return List.of(exception.getMessage());
+    }
 }

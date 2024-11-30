@@ -3,9 +3,12 @@ package com.example.EasyJob.common.service;
 import com.example.EasyJob.common.mapper.GenericMapper;
 import com.example.EasyJob.common.model.BaseEntity;
 import com.example.EasyJob.common.model.PageReponsese;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ import java.util.List;
  * @return
  */
 public interface GenericService<T extends BaseEntity, R, D, U>{
+
+
+
 
     JpaRepository<T, U> getRepository();
 
@@ -51,22 +57,29 @@ public interface GenericService<T extends BaseEntity, R, D, U>{
     }
 
     default D save(R record){
-        T entity = getRepository().save(getMapper().maptoEntity(record));
+        T newEntity = getMapper().maptoEntity(record);
+        T entity = getRepository().save(newEntity);
         return getMapper().maptoDto(entity);
     }
 
     default D update(U id, R record){
-        T entity = getRepository().findById(id)
-                .orElseThrow( () -> new RuntimeException("Entity not found"));
-        getRepository().save(getMapper().maptoEntity(record));
-        return getMapper().maptoDto(entity);
+        // Tìm entity trong database
+        T existingEntity = getRepository().findById(id)
+                .orElseThrow(() -> new RuntimeException("Entity not found"));
+        // Map dữ liệu từ record vào entity cũ
+        getMapper().updateEntityFromRecord(record, existingEntity);
+        // Lưu entity đã cập nhật
+        T updatedEntity = getRepository().save(existingEntity);
+
+        // Trả về DTO
+        return getMapper().maptoDto(updatedEntity);
     }
 
-    default void isDeletedChange(U id, R record){
+    default void isDeletedChange(U id, R record) {
         T entity = getRepository().findById(id)
-                .orElseThrow( () -> new RuntimeException("Entity not found"));
+                .orElseThrow(() -> new RuntimeException("Entity not found"));
         entity.setIsDeleted(!entity.getIsDeleted());
-        getRepository().save(getMapper().maptoEntity(record));
+        getRepository().save(entity);  // Không cần ánh xạ lại record ở đây
     }
 
     default void deleteById(U id){

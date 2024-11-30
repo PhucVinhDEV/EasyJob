@@ -10,6 +10,8 @@ import com.example.EasyJob.user.model.User;
 import com.example.EasyJob.user.model.record.UserRecord;
 import com.example.EasyJob.user.model.reponsese.UserDTO;
 import com.example.EasyJob.user.repository.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,12 @@ public interface UserService extends GenericService<User,UserRecord, UserDTO, UU
 
 @Service
 @AllArgsConstructor
-class UserSerivceImpl implements UserService {
-
+class UserServiceImpl implements UserService {
+    @PersistenceContext
+    private final EntityManager entityManager;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
 
     @Override
     public JpaRepository<User, UUID> getRepository() {

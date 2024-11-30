@@ -3,8 +3,6 @@ package com.example.EasyJob.common.reponsese;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter

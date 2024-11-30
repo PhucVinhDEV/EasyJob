@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = UserEntity.FULLNAME, nullable = false)
-    private String fullname;
+    private String fullName;
 
     @Column(name = UserEntity.PHONE)
     private String phone;
@@ -52,8 +52,8 @@ public class User extends BaseEntity {
     }
 
     public enum StatusVerified{
-        NONE,
         PENDING,
+        NONE,
         VERIDIED
     }
 

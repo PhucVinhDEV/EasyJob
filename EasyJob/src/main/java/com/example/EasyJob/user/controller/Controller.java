@@ -24,5 +24,8 @@ public class Controller {
 
     }
 
-
+    @PutMapping
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserRecord record) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.update(record.id(),record));
+    }
 }
