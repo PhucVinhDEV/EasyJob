@@ -13,7 +13,8 @@ import java.util.UUID;
 @UniqueUser(groups = {InsertInfo.class, UpdateInfo.class})
 public record UserRecord(
 
-        @UUIDConstraint()
+        @UUIDConstraint(groups = {UpdateInfo.class})
+        @Null(message = "ID must be null when creating a new entity", groups = InsertInfo.class)
         UUID id,
 
         @Email(message = "{user.email.invalid}")

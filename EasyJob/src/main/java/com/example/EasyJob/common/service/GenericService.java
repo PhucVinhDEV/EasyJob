@@ -57,8 +57,7 @@ public interface GenericService<T extends BaseEntity, R, D, U>{
     }
 
     default D save(R record){
-        T newEntity = getMapper().maptoEntity(record);
-        T entity = getRepository().save(newEntity);
+        T entity = getRepository().save(getMapper().maptoEntity(record));
         return getMapper().maptoDto(entity);
     }
 

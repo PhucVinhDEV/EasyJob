@@ -14,18 +14,22 @@ public class UUIDConstraintValidator implements ConstraintValidator<UUIDConstrai
     }
 
     @Override
-    public boolean isValid(Object uuid, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Object uuid, ConstraintValidatorContext context) {
         if (uuid == null) {
-            return false;
+            return true; // null hợp lệ nếu bạn cho phép null là giá trị hợp lệ
         }
-        if (uuid.getClass() == String.class || uuid.getClass() == UUID.class) {
-            constraintValidatorContext.buildConstraintViolationWithTemplate(message)
-                    .addConstraintViolation()
-                    .disableDefaultConstraintViolation();
+
+        if (uuid instanceof String uuidString) {
             String regex = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
-            return uuid.toString().matches(regex);
+            return uuidString.matches(regex); // Kiểm tra chuỗi có phải là UUID hợp lệ không
         }
-        return false;
+
+        if (uuid instanceof UUID) {
+            // Nếu là UUID hợp lệ, luôn trả về true
+            return true;
+        }
+
+        return false; // Nếu không phải String hoặc UUID thì coi như không hợp lệ
     }
 
 }

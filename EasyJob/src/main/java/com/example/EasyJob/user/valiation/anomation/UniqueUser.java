@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface UniqueUser {
-    String message() default "{user.existed}";
+    String message() default "userExist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 
