@@ -8,15 +8,18 @@ import com.example.EasyJob.user.valiation.anomation.UniqueUser;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
+
 public class UniqueUserValidator implements ConstraintValidator<UniqueUser, UserRecord> {
-    private final UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
     private String message;
-    private final MessageSource messageSource;
+    @Autowired
+     MessageSource messageSource;
 
     @Override
     public void initialize(UniqueUser constraintAnnotation) {
@@ -51,14 +54,6 @@ public class UniqueUserValidator implements ConstraintValidator<UniqueUser, User
         Optional<User> emailOptional = userRepository.findByEmail(record.email());
         if (emailOptional.isPresent()) {
             message = MessageUtil.getMessage(messageSource, "user.email.exists");
-            buildContext(message, context);
-            return false;
-        }
-
-        // Kiểm tra UUID duy nhất (nếu UUID có thể được tạo thủ công và bạn muốn đảm bảo tính duy nhất)
-        Optional<User> uuidOptional = userRepository.findById(record.id());
-        if (uuidOptional.isPresent()) {
-            message = MessageUtil.getMessage(messageSource, "user.uuid.exists");
             buildContext(message, context);
             return false;
         }

@@ -7,41 +7,46 @@ import com.example.EasyJob.common.validate.group.UpdateInfo;
 import com.example.EasyJob.user.model.User;
 import com.example.EasyJob.user.valiation.anomation.UniqueUser;
 import jakarta.validation.constraints.*;
+import org.springframework.validation.annotation.Validated;
+
 
 import java.util.UUID;
 
 @UniqueUser(groups = {InsertInfo.class, UpdateInfo.class})
+@Validated
 public record UserRecord(
 
         @UUIDConstraint(groups = {UpdateInfo.class})
-        @Null(message = "ID must be null when creating a new entity", groups = InsertInfo.class)
+        @Null( groups = InsertInfo.class , message = "ID must be null when creating a new entity")
+        @NotNull(groups = UpdateInfo.class, message = "ID is required for updates")
         UUID id,
 
-        @Email(message = "{user.email.invalid}")
-        @NotBlank(message = "{user.email.not-blank}")
+        @Email(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.email.invalid}")
+        @NotBlank(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.email.not-blank}")
         String email,
 
-        @NotBlank(message = "{user.password.not-blank}")
-        @Size(min = 8, max = 20, message = "{user.password.size}")
+        @NotBlank(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.password.not-blank}")
+        @Size(groups = {InsertInfo.class, UpdateInfo.class},min = 8, max = 20, message = "{user.password.size}")
         String password,
 
-        @NotBlank(message = "{user.username.not-blank}")
-        @Size(min = 8, max = 20, message = "{user.username.not-blank}}")
+        @NotBlank(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.username.not-blank}")
+        @Size(groups = {InsertInfo.class, UpdateInfo.class},min = 8, max = 20, message = "{user.username.not-blank}")
         String fullName,
 
-        @Size(max = 15, message = "{user.phone.size}") // Example size constraint
+        @Size(groups = {InsertInfo.class, UpdateInfo.class},max = 15, message = "{user.phone.size}") // Example size constraint
         String phone,
 
-        @Size(max = 255, message = "{user.avatar.size}") // Example size constraint
+        @Size(groups = {InsertInfo.class, UpdateInfo.class},max = 255, message = "{user.avatar.size}") // Example size constraint
         String avatar,
 
-        @Size(max = 1000, message = "{user.experience.size}") // Example size constraint
+        @Size(groups = {InsertInfo.class, UpdateInfo.class},max = 1000, message = "{user.experience.size}") // Example size constraint
         String experience,
 
-        @NotNull(message = "{user.gender.not-null}")
+        @NotNull(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.gender.not-null}")
         User.Gender gender,
 
-        @NotNull(message = "{user.status-verified.not-null}")
+        @NotNull(groups = {InsertInfo.class, UpdateInfo.class},message = "{user.status-verified.not-null}")
         User.StatusVerified statusVerified
 ) {
+
 }

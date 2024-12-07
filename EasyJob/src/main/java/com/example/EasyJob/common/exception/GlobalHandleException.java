@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 @ControllerAdvice
 @Slf4j
 public class GlobalHandleException {
     private void logError(Exception e) {
-        log.error("{} occurred.", e.getClass());
+        log.error("{} occurred.", e.getMessage().toLowerCase(Locale.ROOT));
+//        log.error(e.getMessage(), e);
     }
 
         private final Map<Class<? extends Exception>, HttpStatus> exceptionStatusMap = new HashMap<>() {{

@@ -7,6 +7,7 @@ import com.example.EasyJob.user.model.record.UserRecord;
 import com.example.EasyJob.user.model.reponsese.UserDTO;
 import com.example.EasyJob.user.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/User")
 @AllArgsConstructor
+@Slf4j
+@Validated
 public class Controller {
 
     private final UserService userService;

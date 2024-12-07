@@ -11,11 +11,13 @@ import lombok.experimental.UtilityClass;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public class ErrorUtil {
@@ -59,6 +61,15 @@ public class ErrorUtil {
     }
 
     public static List<String> getErrorMessage(Exception exception) {
+
+        if (exception instanceof MethodArgumentNotValidException e) {
+            // Lấy tất cả các lỗi từ FieldError và trả về thông báo chi tiết
+            return e.getBindingResult().getFieldErrors().stream()
+                    .map(FieldError::getDefaultMessage)
+                    .collect(Collectors.toList());
+        }
+
         return List.of(exception.getMessage());
     }
+
 }
