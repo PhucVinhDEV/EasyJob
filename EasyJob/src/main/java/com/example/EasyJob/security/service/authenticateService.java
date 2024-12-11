@@ -4,5 +4,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface authenticateService {
-    public boolean authenticate(String username, String password);
+    authenticateService authenticate(String username, String password);
+    void Logout(String token);
 }

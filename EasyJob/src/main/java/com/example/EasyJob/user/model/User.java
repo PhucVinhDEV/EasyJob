@@ -1,6 +1,8 @@
 package com.example.EasyJob.user.model;
 
 import com.example.EasyJob.common.model.BaseEntity;
+import com.example.EasyJob.common.util.JoinTableUtil;
+import com.example.EasyJob.role.model.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -44,6 +46,9 @@ public class User extends BaseEntity {
     @Column(name = UserEntity.STATUS_VERIFIED, nullable = false)
     private StatusVerified statusVerified;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = JoinTableUtil.USER_MAPPED_BY_ROLE, nullable = false) // Tên cột khóa ngoại trong bảng User
+    private Role role;
 
     public enum Gender {
         MALE,
@@ -57,7 +62,7 @@ public class User extends BaseEntity {
         VERIDIED
     }
 
-//    Set<String> skills = new HashSet<>();
+
 
     @UtilityClass
     static class UserEntity {
