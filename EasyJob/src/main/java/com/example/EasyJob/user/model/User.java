@@ -47,7 +47,7 @@ public class User extends BaseEntity {
     private StatusVerified statusVerified;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = JoinTableUtil.USER_MAPPED_BY_ROLE, nullable = false) // Tên cột khóa ngoại trong bảng User
+    @JoinColumn(name = JoinTableUtil.USER_MAPPED_BY_ROLE, nullable = true) // Tên cột khóa ngoại trong bảng User
     private Role role;
 
     public enum Gender {

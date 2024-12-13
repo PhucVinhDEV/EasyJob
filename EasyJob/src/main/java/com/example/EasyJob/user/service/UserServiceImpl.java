@@ -7,7 +7,9 @@ import com.example.EasyJob.user.model.record.UserRecord;
 import com.example.EasyJob.user.model.reponsese.UserDTO;
 import com.example.EasyJob.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public JpaRepository<User, UUID> getRepository() {
@@ -30,4 +34,11 @@ public class UserServiceImpl implements UserService {
         return userMapper;
     }
 
+
+    @Override
+    public UserDTO save(UserRecord record) {
+        User user = userMapper.maptoEntity(record);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userMapper.maptoDto(userRepository.save(user));
+    }
 }

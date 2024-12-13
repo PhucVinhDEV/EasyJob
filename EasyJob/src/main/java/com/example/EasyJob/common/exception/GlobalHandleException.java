@@ -21,7 +21,7 @@ import java.util.Map;
 public class GlobalHandleException {
     private void logError(Exception e) {
         log.error("{} occurred.", e.getMessage().toLowerCase(Locale.ROOT));
-//        log.error(e.getMessage(), e);
+        log.error(e.getMessage(), e);
     }
 
         private final Map<Class<? extends Exception>, HttpStatus> exceptionStatusMap = new HashMap<>() {{

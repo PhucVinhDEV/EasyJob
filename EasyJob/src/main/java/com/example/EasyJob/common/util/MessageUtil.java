@@ -9,8 +9,16 @@ import java.util.Locale;
 
 @UtilityClass
 public class MessageUtil {
-    public static final String UUID_NOT_FOUND = "Không tìm thấy mã ID(UUID) trùng khớp";
+    public static final String EMAIL_NOT_EXIST = "Tài khoản không tồn tại";
+    public static final String PASSWORD_NOT_CORRECT = "Mật khẩu Không khớp";
+    public static final String JWT_AUTHENTICATION_FAILED="JWT Authentication Failed";
     public static final String INVALID_UUID_FORMAT = "Mã ID(UUID) không hợp lệ";
+    public static final String TOKEN_EXPIRED="Token Expired";
+    public static final String REFRESH_TOKEN_INVALID="RefreshToken Invalid";
+    public static final String ACCESS_TOKEN_INVALID="AccessToken Invalid";
+    public static final String UUID_NOT_FOUND = "Không tìm thấy mã ID(UUID) trùng khớp";
+
+    public static final String UNAUTHEN_REFRESHTOKEN_NOT_CORRECT = "RefreshToken Không hợp lệ";
     public static final String INVALID_DATE_FORMAT
             = "Date Format không hợp lệ. Date Format yêu cầu: " + DateTimeUtil.DATE_FORMAT;
     public static final String INVALID_USER_ACCOUNT_STATUS

@@ -8,7 +8,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+  data:
+    redis:
+      host: redis-19568.c340.ap-northeast-2-1.ec2.redns.redis-cloud.com
+      port: 19568
+      password: gD9JLj0k1f9gTuJAjyYrY0qiUcSeHwgO
 
 
     show-sql: true
@@ -16,6 +21,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
+  security:
+        jwt:
+          secretKey: OwZdPSFmr0zvDnNkfcaU9SUEG4fsask/qTtmffAIVmYzG1PjCzmiwXZbuJp5NJ9Z
+
 
 
 server:

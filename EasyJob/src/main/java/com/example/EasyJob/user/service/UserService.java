@@ -18,7 +18,8 @@ import java.util.UUID;
 
 @Service
 public interface UserService extends GenericService<User,UserRecord, UserDTO, UUID> {
-
+    @Override
+    public UserDTO save(UserRecord record);
 }
 
 
