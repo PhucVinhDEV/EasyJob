@@ -15,8 +15,6 @@ spring:
       host: redis-19568.c340.ap-northeast-2-1.ec2.redns.redis-cloud.com
       port: 19568
       password: gD9JLj0k1f9gTuJAjyYrY0qiUcSeHwgO
-
-
     show-sql: true
     properties:
       hibernate:
@@ -25,7 +23,8 @@ spring:
   security:
         jwt:
           secretKey: OwZdPSFmr0zvDnNkfcaU9SUEG4fsask/qTtmffAIVmYzG1PjCzmiwXZbuJp5NJ9Z
-
+        AccessExperienceTime: 30  # Thời gian hết hạn Access Token (đơn vị: phút)
+        RefreshExperienceTime: 168  # Thời gian hết hạn Refresh Token (đơn vị: giờ)
 
 
 server:

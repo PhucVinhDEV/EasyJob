@@ -42,9 +42,15 @@ public interface JWTService {
 class JWTServiceImpl implements JWTService {
 
     private final UserRepository userRepository;
+
     @Value("${spring.security.jwt.secretKey}")
     private String SignerKey;
 
+    @Value("${spring.security.AccessExperienceTime}")
+    private Integer AccessExperienceTime;
+
+    @Value("${spring.security.RefreshExperienceTime}")
+    private Integer RefreshExperienceTime;
 
     private final RedisService redisService;
     private final ObjectMapper objectMapper;
@@ -62,7 +68,7 @@ class JWTServiceImpl implements JWTService {
                 .subject(user.getId().toString())
                 .issuer("BitzNomad")
                 .issueTime(new Date())
-                .expirationTime(new Date(Instant.now().plus(15, ChronoUnit.MINUTES).toEpochMilli()))
+                .expirationTime(new Date(Instant.now().plus(AccessExperienceTime, ChronoUnit.MINUTES).toEpochMilli()))
                 .jwtID(UUID.randomUUID().toString())
                 .claim("scope", buildScope(user))
                 .build();
@@ -75,7 +81,7 @@ class JWTServiceImpl implements JWTService {
                 .subject(user.getId().toString())
                 .issuer("BitzNomad")
                 .issueTime(new Date())
-                .expirationTime(new Date(Instant.now().plus(7, ChronoUnit.DAYS).toEpochMilli()))
+                .expirationTime(new Date(Instant.now().plus(RefreshExperienceTime, ChronoUnit.HOURS).toEpochMilli()))
                 .jwtID(UUID.randomUUID().toString())
                 .claim("scope", "refresh_token")
                 .build();
@@ -90,7 +96,7 @@ class JWTServiceImpl implements JWTService {
                     .refreshtoken(refreshToken.serialize())
                     .build();
             String jwtObjectJson = objectMapper.writeValueAsString(jwtObject);
-            redisService.setValueWithTTL(user.getId().toString(), jwtObjectJson,7*24, TimeUnit.HOURS);
+            redisService.setValueWithTTL(user.getId().toString(), jwtObjectJson,RefreshExperienceTime, TimeUnit.HOURS);
             return jwtObject;
         } catch (JOSEException | JsonProcessingException e) {
             log.error("JWT Exception", e);
