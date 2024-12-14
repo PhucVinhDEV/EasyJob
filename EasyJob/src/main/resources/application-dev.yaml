@@ -8,7 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
+    show-sql: true
   data:
     redis:
       host: redis-19568.c340.ap-northeast-2-1.ec2.redns.redis-cloud.com

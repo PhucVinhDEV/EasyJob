@@ -6,7 +6,8 @@ import com.example.EasyJob.permission.mapper.PermissionMapper;
 import com.example.EasyJob.permission.model.Permission;
 import com.example.EasyJob.permission.model.PermissionDTO;
 import com.example.EasyJob.permission.model.PermissionRecord;
-import com.example.EasyJob.permission.repository.PermissiomRepository;
+
+import com.example.EasyJob.permission.repository.PermissionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,7 +18,7 @@ public interface PermissionService extends GenericService<Permission, Permission
 
 @AllArgsConstructor
 class PermissionServiceImpl implements PermissionService {
-    private final PermissiomRepository repository;
+    private final PermissionRepository repository;
     private final PermissionMapper mapper;
 
     @Override

@@ -50,6 +50,15 @@ public class User extends BaseEntity {
     @JoinColumn(name = JoinTableUtil.USER_MAPPED_BY_ROLE, nullable = true) // Tên cột khóa ngoại trong bảng User
     private Role role;
 
+    public User(String email,String fullName, String password,Gender gender,StatusVerified statusVerified, Role role) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.gender = gender;
+        this.statusVerified = statusVerified;
+        this.role = role;
+    }
+
     public enum Gender {
         MALE,
         FEMALE,

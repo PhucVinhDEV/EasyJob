@@ -25,7 +25,7 @@ import java.util.Set;
 @Table(name = Permission.PermissionEntity.TABLE_NAME)
 public class Permission extends BaseEntity {
 
-    @Column(name = PermissionEntity.NAME,nullable = false)
+    @Column(name = PermissionEntity.NAME,nullable = false, unique = true)
     private String name;
 
     @Column(name = PermissionEntity.DESCRIPTION,nullable = false)
